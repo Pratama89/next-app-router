@@ -9,5 +9,4 @@ export async function POST(request: NextRequest) {
         message: " Success",
         data: req
      });
-
 }
