@@ -6,14 +6,16 @@ import { cache } from "react";
 type ProductPageProps = { params: { slug: string } };
 
 async function getData() {
+
   // const res = await fetch('https://fakestoreapi.com/products', {
   //   cache: "no-store",
   // }); 
-  const res = await fetch('http://localhost:3000/api/productsss', {
+  const res = await fetch('http://localhost:3000/api/products', {
     cache: "no-store",
     next: {
       tags: ["products"],
       // revalidate: 30,
+
     }
   });
 
@@ -31,6 +33,7 @@ export default async function ProductPage(props: ProductPageProps) {
     // console.log(params.slug);
     return (
       <>
+
         <Link href="/dashboard/product">
           <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded m-5">Sinkronisasi</button>
         </Link>
@@ -94,6 +97,7 @@ export default async function ProductPage(props: ProductPageProps) {
           )} 
         </div>
       
+
       </>
     )
 }

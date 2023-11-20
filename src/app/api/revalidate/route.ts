@@ -26,4 +26,5 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({
         revalidate: true, now: Date.now(),
     })
+
 }
