@@ -1,4 +1,4 @@
-import AdminProductPage from "@/app/(admin)/dashboard/product/page";
+import AdminProductPage from "@/app/(admin)/dashboard/@products/page";
 import Image from "next/image";
 import Link from "next/link";
 import { cache } from "react";
@@ -10,7 +10,7 @@ async function getData() {
   // const res = await fetch('https://fakestoreapi.com/products', {
   //   cache: "no-store",
   // }); 
-  const res = await fetch('http://localhost:3000/api/products', {
+  const res = await fetch('http://localhost:3000/api/product', {
     cache: "no-store",
     next: {
       tags: ["products"],

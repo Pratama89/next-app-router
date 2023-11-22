@@ -24,7 +24,7 @@ export default function AdminProductPage() {
         }
     }
     return (
-        <div>
+        <div className="w-3/6 h-96 bg-gray-400 flex justify-center items-center rounded-lg ">
             <h1>Status: {status}</h1>
             <button className="flex bg-blue-500 h-10 w-24 justify-center items-center m-5 p-5 rounded-md text-white" onClick={() => revalidate()}>Revalidate</button>
             <div>

@@ -7,7 +7,9 @@ export default function Navbar() {
     return (
         <nav className="flex justify-between px-5 bg-gray-700 p-2">
             <div className="flex ">
-            <h1 className="text-white">Navbar</h1>
+              <Link href={"/dashboard"}>
+                <h1 className="text-white">Navbar</h1>
+              </Link>
             <ul className="flex ml-5">
               <Link href="/">
                 <li 
