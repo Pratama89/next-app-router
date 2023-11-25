@@ -40,20 +40,15 @@ export async function register(
     }))
 
     if (users.length > 0) {
-        return {status: false, message: "Email already exists" };
+        return {status: false, statusCode: 400, message: "Email already exists" };
     } else {
         data.role = "admin";
         data.password = await bcrypt.hash(data.password, 10);
         try {
             await addDoc(collection(firestore, "users"), data);
+            return {status: true, statusCode: 200, message: "Register Success" }
         } catch (error) {
-            return {status: false, message: error.message };
-        }
-
-        await addDoc(collection(firestore, "users"), data). then (() => {
-            callback({status: true, message: "Register Success" });
-        }).catch((error) => {
-            callback({status: false, message: error.message });
-        });
+            return {status: false, statusCode: 400, message: "Register Failed" };
+        }        
     }
 }

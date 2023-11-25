@@ -2,12 +2,19 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export default function RegisterPage() {
+  const {push} = useRouter();
+  const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    fetch("/api/auth/register", {
+    setError("");
+    setIsLoading(true);
+    const res = await fetch("/api/auth/register", {
       method: "POST",
       body: JSON.stringify({
         fullname: e.target.fullname.value,
@@ -15,10 +22,19 @@ export default function RegisterPage() {
         password: e.target.password.value,
       })
     })
+    if(res.status === 200) {
+      e.target.reset();
+      push("/login");
+      setIsLoading(false);
+    } else {
+      setError("Email Already Exist");
+      setIsLoading(false);
+    }
   }
     return (
         <>
       <div className="flex min-h-full flex-1 flex-col justify-center items-center px-6 h-screen py-12 lg:px-8 ">
+        
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <Image
             className="mx-auto "
@@ -31,7 +47,9 @@ export default function RegisterPage() {
             Daftar Akun
           </h2>
         </div>
-
+        {error !== "" && (
+          <div className="text-center border border-red-200 bg-red-200 text-red-700 px-2 py-2 rounded max-w-md w-full">{error}</div>
+        )}
         <div className="max-w-md w-full mt-10 sm:mx-auto p-5 rounded-md shadow-lg border border-slate-300">
           <form className="space-y-6" onSubmit={(e) => handleSubmit(e)}>
             <div>
