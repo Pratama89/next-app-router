@@ -6,6 +6,7 @@ import './globals.css'
 import Navbar from './navbar'
 import { useState } from 'react'
 import { usePathname } from 'next/navigation'
+import { SessionProvider } from 'next-auth/react'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -26,10 +27,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        {!disableNavbar.includes(pathname) && <Navbar />}
-        {/* <h1>Pharmadent {state}</h1> */}
-        {/* <button onClick={() => setState(state + 1)}>Klik</button>  */}
-        {children}
+        <SessionProvider>
+          {!disableNavbar.includes(pathname) && <Navbar />}        
+          {children}
+        </SessionProvider>
       </body>
     </html>
   )

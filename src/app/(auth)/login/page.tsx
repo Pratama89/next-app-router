@@ -2,22 +2,35 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
+  const { push } = useRouter();
 
-    const handleLogin = (e: any) => {
+    const handleLogin = async (e: any) => {
         e.preventDefault();
-        fetch('/api/auth/login', {
-            method: 'POST',
-            body: JSON.stringify({
-                email: e.currentTarget.email.value,
-                password: e.currentTarget.password.value,
-            })
-        })
+        try {
+          const res = await signIn('credentials', {
+            redirect: false,
+            email: e.target.email.value,
+            password: e.target.password.value,
+            callbackUrl: '/dashboard',
+          })
+          if (!res?.error) {
+            push("/dashboard")
+          } else {
+            console.log(res.error)
+          }
+        }
+        catch (err) {
+          console.log(err)
+        }
+        
     }
     return (
     <>
-      <div className="flex min-h-full flex-1 flex-col justify-center px-6 h-screen py-12 lg:px-8 ">
+      <div className="flex min-h-full flex-1 flex-col justify-center items-center px-6 h-screen py-12 lg:px-8 ">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <Link href="/">
             <Image
@@ -33,7 +46,7 @@ export default function LoginPage() {
           </h2>
         </div>
 
-        <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm p-5  rounded-md shadow-lg border border-slate-300">
+        <div className="max-w-md w-full mt-10 sm:mx-auto p-5 rounded-md shadow-lg border border-slate-300">
           <form className="space-y-6" onSubmit={(e) => handleLogin(e)} method="POST">
             <div>
               <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">

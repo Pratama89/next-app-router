@@ -1,10 +1,24 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 
 export default function RegisterPage() {
+
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+    fetch("/api/auth/register", {
+      method: "POST",
+      body: JSON.stringify({
+        fullname: e.target.fullname.value,
+        email: e.target.email.value,
+        password: e.target.password.value,
+      })
+    })
+  }
     return (
         <>
-      <div className="flex min-h-full flex-1 flex-col justify-center px-6 h-screen py-12 lg:px-8 ">
+      <div className="flex min-h-full flex-1 flex-col justify-center items-center px-6 h-screen py-12 lg:px-8 ">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <Image
             className="mx-auto "
@@ -18,8 +32,8 @@ export default function RegisterPage() {
           </h2>
         </div>
 
-        <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm p-5  rounded-md shadow-lg border border-slate-300">
-          <form className="space-y-6" action="#" method="POST">
+        <div className="max-w-md w-full mt-10 sm:mx-auto p-5 rounded-md shadow-lg border border-slate-300">
+          <form className="space-y-6" onSubmit={(e) => handleSubmit(e)}>
             <div>
               <label htmlFor="fullname" className="block text-sm font-medium leading-6 text-gray-900">
                 Full Name
