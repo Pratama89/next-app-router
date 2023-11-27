@@ -52,3 +52,25 @@ export async function register(
         }        
     }
 }
+
+export async function login(data: {email: string}) {
+    const q = query(
+        collection(firestore, "users"),
+        where("email", "==", data.email)
+    );
+
+    const snapsot = await getDocs(q);
+    const user = snapsot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+    }))
+
+    if(user) {
+        return user[0];
+    } else {
+        return null
+    }
+}
+git add.
+git commit -m "Data baru"
+git PushManager
