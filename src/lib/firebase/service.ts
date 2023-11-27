@@ -42,7 +42,7 @@ export async function register(
     if (users.length > 0) {
         return {status: false, statusCode: 400, message: "Email already exists" };
     } else {
-        data.role = "admin";
+        data.role = "member";
         data.password = await bcrypt.hash(data.password, 10);
         try {
             await addDoc(collection(firestore, "users"), data);
@@ -71,6 +71,3 @@ export async function login(data: {email: string}) {
         return null
     }
 }
-git add.
-git commit -m "Data baru"
-git PushManager

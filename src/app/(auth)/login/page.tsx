@@ -4,23 +4,33 @@ import Image from "next/image";
 import Link from "next/link";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
-export default function LoginPage() {
+export default function LoginPage({searchParams}: any) {
   const { push } = useRouter();
+  const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
     const handleLogin = async (e: any) => {
         e.preventDefault();
+        setError("");
+        setIsLoading(true);
         try {
           const res = await signIn('credentials', {
             redirect: false,
             email: e.target.email.value,
             password: e.target.password.value,
-            callbackUrl: '/dashboard',
+            callbackUrl: searchParams?.callbackUrl || "/dashboard",
           })
           if (!res?.error) {
-            push("/dashboard")
+            e.target.reset();
+            setIsLoading(false)
+            push(searchParams?.callbackUrl || "/dashboard")
           } else {
-            console.log(res.error)
+            setIsLoading(false)
+            if (res.status === 401) {
+              setError("Email or Password is incorrect")
+            }
           }
         }
         catch (err) {
@@ -89,10 +99,11 @@ export default function LoginPage() {
 
             <div>
               <button
+                disabled={isLoading}
                 type="submit"
                 className="flex w-full justify-center rounded-md bg-blue-900 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 mb-5" 
               >
-                Sign in
+                {isLoading ? "Loading..." : "Login"}
               </button>
             </div>
           </form>
