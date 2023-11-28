@@ -71,6 +71,3 @@ export async function login(data: {email: string}) {
         return null
     }
 }
-git add.
-git commit -m "Data baru"
-git PushManager
