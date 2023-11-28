@@ -103,7 +103,21 @@ export default function LoginPage({searchParams}: any) {
                 type="submit"
                 className="flex w-full justify-center rounded-md bg-blue-900 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 mb-5" 
               >
-                {isLoading ? "Loading..." : "Login"}
+                <div className="flex items-center justify-between">
+                  <Image src={"/logo_google.svg"} alt="login" width={30} height={30} />
+                  <div>
+                  {isLoading ? "Loading..." : "Login"}            
+                  </div>
+                </div>
+              </button>
+              <hr />
+              <button
+                onClick={() => signIn("google", { callbackUrl, redirect: false })}
+                disabled={isLoading}
+                type="button"
+                className="flex w-full justify-center rounded-md bg-red-800 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-red-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose-600 mb-5" 
+              >
+                {isLoading ? "Loading..." : "Login With Google"}
               </button>
             </div>
           </form>

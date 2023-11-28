@@ -23,7 +23,7 @@ export default function withAuth(
                 }
 
                 if(token) {
-                    if(!authPage.includes(pathname)) {
+                    if(authPage.includes(pathname)) {
                         return NextResponse.redirect(new URL("/", req.url));
                     }
 
