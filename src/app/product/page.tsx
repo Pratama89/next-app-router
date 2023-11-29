@@ -28,14 +28,14 @@ export default async function ProductPage(props: ProductPageProps) {
           products.data.map((product: any) => (    
           <Link href={`/product/detail/${product.id}`} 
           key={product.id}  
-          className="flex flex-col justify-between w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 ">
+          className="flex flex-col justify-stretch min-h-max md:max-h-96 w-full bg-white border border-red-700 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 ">
               
-                  <img 
-                  className="p-8 rounded-t-lg mx-auto object-contain w-60 h-60 " 
+                  <Image 
+                  className="p-2 object-contain w-full h-96 " 
                   src={product.image} 
                   alt="product image"
-                  height={250}
-                  width={250}
+                  height={500}
+                  width={500}
                   
                   />
               
