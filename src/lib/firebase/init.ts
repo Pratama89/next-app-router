@@ -5,12 +5,12 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyCwj0NTIrcpSss1UnWVSRknw1xuCq4GJ50",
-  authDomain: "next-app-route.firebaseapp.com",
-  projectId: "next-app-route",
-  storageBucket: "next-app-route.appspot.com",
-  messagingSenderId: "559248355568",
-  appId: "1:559248355568:web:5d3e1d517eac56b4669235"
+  apiKey: "AIzaSyA5t-ndWRWhrkQhJZECHzNdpfTKME0RztE",
+  authDomain: "nextapp-pharmadent.firebaseapp.com",
+  projectId: "nextapp-pharmadent",
+  storageBucket: "nextapp-pharmadent.appspot.com",
+  messagingSenderId: "374971009317",
+  appId: "1:374971009317:web:4aff60f9f0cfdf5ec5f2cc"
 };
 
 // Initialize Firebase
