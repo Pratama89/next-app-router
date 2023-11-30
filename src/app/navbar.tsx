@@ -7,7 +7,7 @@ export default function Navbar() {
   const pathname = usePathname();
   const {data:session, status}: { data: any, status: string} = useSession();
     return (
-        <nav className="flex justify-between px-5 bg-gray-700 p-2">
+        <nav className="flex justify-between items-center  px-5 bg-gray-700 p-2">
             <div className="flex ">
               <Link href={"/dashboard"}>
                 <h1 className="text-white">Navbar</h1>
@@ -32,7 +32,7 @@ export default function Navbar() {
             </div>
             <div>
               {status === "authenticated" ? (
-                <div className="flex items-center">
+                <div className="flex items-center md:text-base sm:text-xs">
                   <h4 className="text-white mr-3">{session?.user.fullname}</h4>
                   <button 
                   className="bg-white px-3 py-1 rounded-lg cursor-pointer"

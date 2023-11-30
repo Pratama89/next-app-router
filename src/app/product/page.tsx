@@ -16,9 +16,9 @@ export default async function ProductPage(props: ProductPageProps) {
     return (
       <>
 
-        <Link href="/dashboard/product">
+        {/* <Link href="/dashboard/product">
           <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded m-5">Sinkronisasi</button>
-        </Link>
+        </Link> */}
         <div className="grid  p-4 gap-4 lg:grid-cols-6 md:grid-cols-4 sm:grid-cols-2">
           {/* <h1>
             {params.slug ? "Detail Product Page" : "Product Page"}
@@ -28,7 +28,7 @@ export default async function ProductPage(props: ProductPageProps) {
           products.data.map((product: any) => (    
           <Link href={`/product/detail/${product.id}`} 
           key={product.id}  
-          className="flex flex-col justify-stretch min-h-max md:max-h-96 w-full bg-white border border-red-700 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 ">
+          className="flex flex-col justify-stretch min-h-max md:max-h-96 w-full bg-white border border-gray-500 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 ">
               
                   <Image 
                   className="p-2 object-contain w-full h-96 " 
@@ -36,7 +36,8 @@ export default async function ProductPage(props: ProductPageProps) {
                   alt="product image"
                   height={500}
                   width={500}
-                  
+                  // priority
+                  loading="lazy"
                   />
               
               <div className="px-5 pb-5">
